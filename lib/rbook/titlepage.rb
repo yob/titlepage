@@ -1,7 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + "/../")
 
 require 'rbook/isbn'
-require 'rbook/errors'
 require 'rbook/titlepage/titlepage_driver'
 require 'rbook/titlepage/client'
 require 'rbook/titlepage/wwwclient'
@@ -33,5 +32,7 @@ module RBook
   #    puts tp.find("9780672327568").inspect
   #  end
   module TitlePage
+    class InvalidRubyVersionError < RuntimeError;end;
+    class NotLoggedInError < RuntimeError;end;
   end
 end

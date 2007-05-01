@@ -1,7 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + "/../")
 
 require 'rbook/isbn'
-require 'rbook/errors'
 
 module RBook
   module TitlePage
