@@ -3,6 +3,7 @@
 # line with these 2 lines:
 #   require 'rubygems'
 #   require 'rbook/titlepage'
+require "rubygems"
 require File.dirname(__FILE__) + '/../lib/rbook/titlepage'
 
 RBook::TitlePage::Client.open("username", "password") do |tp|
