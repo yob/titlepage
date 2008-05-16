@@ -3,7 +3,11 @@ $LOAD_PATH.unshift(File.dirname(__FILE__) + "/../")
 # the soap4r gem is often a little better than the version that lives in
 # the ruby standard library, so if the local system has the gem installed 
 # use that
-begin; gem 'soap4r'; rescue; end
+begin
+  gem 'soap4r'
+rescue LoadError => e
+  # do nothing
+end
 require 'rbook/isbn'
 require 'rbook/titlepage/titlepage_driver'
 require 'rbook/titlepage/client'
