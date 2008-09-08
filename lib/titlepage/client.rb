@@ -11,67 +11,40 @@ module TitlePage
   # For a basic usage overview, check out RBook::TitlePage
   class Client
 
-    @@uri = nil
-
-    # Tells all instances of this class to query the titlepage API via a Distributed Ruby
-    # proxy. This is useful where multiple machines need to make queries and you need to be
-    # careful not to exceed the maximum query rate.
-    #
-    # There is an example proxy executable available in the bin/ directory of rbook.
-    #
-    # Assuming the proxy is running on port 61676 of the local machine, the following
-    # code can be used to query titlepage:
-    #   
-    #   RBook::TitlePage::Client.use_proxy("druby://127.0.0.1:61676")
-    #   RBook::TitlePage::Client.open("username", "password") do |tp|
-    #     puts tp.find("0091835135").product.title.titleText
-    #   end
-    def self.use_proxy(uri)
-      @@uri = uri
-    end
-
     # Optional driver parameter allows an alternative SOAP driver to the default to be specified.
     # This is primarily for testing purposes and probably isn't useful to anyone in the real world.
-    def initialize(driver = nil)
-      @driver = driver || TitleQueryPortType.new
-      @token = nil
+    def initialize
+      @driver = TitleQueryPortType.new
+      @token  = nil
     end
 
     # login to the titlepage API.
     def login(username, password)
       raise InvalidRubyVersionError, 'Ruby 1.8.3 or higher is required to use this class' unless RUBY_VERSION >= "1.8.3"
       logout if @token
-      @username = username
-      @password = password
-      unless @@uri
-        @token = @driver.login(username, password)
-        return true if @token
+      @token = @driver.login(username, password)
+      if @token
+        return true
+      else
+        return false
       end
     end
 
     # logout from the titlepage API
     def logout
-      @username = nil
-      @password = nil
-      if @token and @@uri != nil
+      if @token
         @driver.logout(@token)
-      else
-        true
+        @token = nil
       end
     end
 
     # retrieve information on a specified ISBN
     def find(isbn)
-      return NotLoggedInError, 'You must login to titlepage API before performing a search' unless @token || @@uri
+      return NotLoggedInError, 'You must login to titlepage API before performing a search' unless @token
       isbn = RBook::ISBN::convert_to_isbn13(isbn)
       return nil if isbn.nil?
       begin
-        if @@uri
-          proxy = DRbObject.new_with_uri(@@uri)
-          result = proxy.find(@username, @password, isbn) 
-        else
-          result = @driver.SearchByISBN13(@token, isbn)
-        end
+        result = @driver.SearchByISBN13(@token, isbn)
 
         if result.Product.nil?
           return nil
@@ -79,16 +52,15 @@ module TitlePage
           return result
         end
       end
-
     end
 
     # a convenience method to make single queries to title page a little cleaner. 
     #
     #  result = RBook::TitlePage.find("username","password","9780091835132")
     #  puts result.inspect
-    def self.find(username, password, isbn, driver = nil)
+    def self.find(username, password, isbn)
       result = nil
-      RBook::TitlePage::Client.open(username, password, driver) do |tp|
+      RBook::TitlePage::Client.open(username, password) do |tp|
         result = tp.find(isbn)
       end
       return result
@@ -100,9 +72,9 @@ module TitlePage
     #  RBook::TitlePage.open("username","password") do |tp|
     #    result = tp.find("9780091835132")
     #  end
-    def self.open(username, password, driver = nil)
+    def self.open(username, password)
 
-      tp = self.new(driver || TitleQueryPortType.new)
+      tp = self.new
 
       begin
         tp.login(username, password)
