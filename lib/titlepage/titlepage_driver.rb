@@ -1,114 +1,66 @@
-require File.dirname(__FILE__) + '/titlepage_utils.rb'
-
 require 'soap/rpc/driver'
 
 module TitlePage
   class TitleQueryPortType < ::SOAP::RPC::Driver
     DefaultEndpointUrl = "http://www.titlepage.com.au/ws/TitleQuery.php"
-    MappingRegistry = ::SOAP::Mapping::Registry.new
-
-    MappingRegistry.set(
-      SearchResults,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "SearchResults") }
-    )
-    MappingRegistry.set(
-      Product,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "Product") }
-    )
-    MappingRegistry.set(
-      ArrayOfProductIdentifier,
-      ::SOAP::SOAPArray,
-      ::SOAP::Mapping::Registry::TypedArrayFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "ProductIdentifier") }
-    )
-    MappingRegistry.set(
-      Title,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "Title") }
-    )
-    MappingRegistry.set(
-      ArrayOfContributor,
-      ::SOAP::SOAPArray,
-      ::SOAP::Mapping::Registry::TypedArrayFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "Contributor") }
-    )
-    MappingRegistry.set(
-      SupplyDetail,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "SupplyDetail") }
-    )
-    MappingRegistry.set(
-      Stock,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "Stock") }
-    )
-    MappingRegistry.set(
-      Price,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "Price") }
-    )
-    MappingRegistry.set(
-      ProductIdentifier,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "ProductIdentifier") }
-    )
-    MappingRegistry.set(
-      Contributor,
-      ::SOAP::SOAPStruct,
-      ::SOAP::Mapping::Registry::TypedStructFactory,
-      { :type => XSD::QName.new("urn:TitleQuery", "Contributor") }
-    )
+    NsWs = "http://www.titlepage.com/ws"
 
     Methods = [
-      [ XSD::QName.new("http://www.titlepage.com/ws", "Login"),
+      [ XSD::QName.new(NsWs, "Login"),
         "http://www.titlepage.com.au/ws/TitleQuery.php/Login",
         "login",
         [ ["in", "UserName", ["::SOAP::SOAPString"]],
           ["in", "Password", ["::SOAP::SOAPString"]],
           ["retval", "Token", ["::SOAP::SOAPString"]] ],
           { :request_style =>  :rpc, :request_use =>  :encoded,
-            :response_style => :rpc, :response_use => :encoded }
+            :response_style => :rpc, :response_use => :encoded,
+            :faults => {} }
     ],
-      [ XSD::QName.new("http://www.titlepage.com/ws", "SearchByISBN"),
+      [ XSD::QName.new(NsWs, "SearchByISBN"),
         "http://www.titlepage.com.au/ws/TitleQuery.php/SearchByISBN",
         "searchByISBN",
         [ ["in", "Token", ["::SOAP::SOAPString"]],
           ["in", "ISBN", ["::SOAP::SOAPString"]],
-          ["retval", "SearchResults", ["SearchResults", "urn:TitleQuery", "SearchResults"]] ],
+          ["retval", "SearchResults", ["TitlePage::SearchResults", "urn:TitleQuery", "SearchResults"]] ],
           { :request_style =>  :rpc, :request_use =>  :encoded,
-            :response_style => :rpc, :response_use => :encoded }
+            :response_style => :rpc, :response_use => :encoded,
+            :faults => {} }
     ],
-      [ XSD::QName.new("http://www.titlepage.com/ws", "SearchByEAN"),
+      [ XSD::QName.new(NsWs, "SearchByISBN13"),
+        "http://www.titlepage.com.au/ws/TitleQuery.php/SearchByISBN13",
+        "searchByISBN13",
+        [ ["in", "Token", ["::SOAP::SOAPString"]],
+          ["in", "ISBN13", ["::SOAP::SOAPString"]],
+          ["retval", "SearchResults", ["TitlePage::SearchResults", "urn:TitleQuery", "SearchResults"]] ],
+          { :request_style =>  :rpc, :request_use =>  :encoded,
+            :response_style => :rpc, :response_use => :encoded,
+            :faults => {} }
+    ],
+      [ XSD::QName.new(NsWs, "SearchByEAN"),
         "http://www.titlepage.com.au/ws/TitleQuery.php/SearchByEAN",
         "searchByEAN",
         [ ["in", "Token", ["::SOAP::SOAPString"]],
           ["in", "EAN", ["::SOAP::SOAPString"]],
-          ["retval", "SearchResults", ["SearchResults", "urn:TitleQuery", "SearchResults"]] ],
+          ["retval", "SearchResults", ["TitlePage::SearchResults", "urn:TitleQuery", "SearchResults"]] ],
           { :request_style =>  :rpc, :request_use =>  :encoded,
-            :response_style => :rpc, :response_use => :encoded }
+            :response_style => :rpc, :response_use => :encoded,
+            :faults => {} }
     ],
-      [ XSD::QName.new("http://www.titlepage.com/ws", "Logout"),
+      [ XSD::QName.new(NsWs, "Logout"),
         "http://www.titlepage.com.au/ws/TitleQuery.php/Logout",
         "logout",
         [ ["in", "token", ["::SOAP::SOAPString"]] ],
         { :request_style =>  :rpc, :request_use =>  :encoded,
-          :response_style => :rpc, :response_use => :encoded }
+          :response_style => :rpc, :response_use => :encoded,
+          :faults => {} }
     ]
     ]
 
     def initialize(endpoint_url = nil)
       endpoint_url ||= DefaultEndpointUrl
       super(endpoint_url, nil)
-      self.mapping_registry = MappingRegistry
+      self.mapping_registry = DefaultMappingRegistry::EncodedRegistry
+      self.literal_mapping_registry = DefaultMappingRegistry::LiteralRegistry
       init_methods
     end
 

@@ -12,6 +12,8 @@ end
 require 'rubygems'
 require 'rbook/isbn'
 require File.dirname(__FILE__) + '/titlepage/titlepage_driver'
+require File.dirname(__FILE__) + '/titlepage/titlepage_utils'
+require File.dirname(__FILE__) + '/titlepage/mapping_registry'
 require File.dirname(__FILE__) + '/titlepage/client'
 require File.dirname(__FILE__) + '/titlepage/wwwclient'
 

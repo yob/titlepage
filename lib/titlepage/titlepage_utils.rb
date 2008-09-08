@@ -3,26 +3,11 @@ require 'xsd/qname'
 module TitlePage
 
   # {urn:TitleQuery}ProductIdentifier
+  #   productIDType - SOAP::SOAPString
+  #   iDValue - SOAP::SOAPString
   class ProductIdentifier
-    @@schema_type = "ProductIdentifier"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["productIDType", ["SOAP::SOAPString", XSD::QName.new(nil, "ProductIDType")]], ["iDValue", ["SOAP::SOAPString", XSD::QName.new(nil, "IDValue")]]]
-
-    def ProductIDType
-      @productIDType
-    end
-
-    def ProductIDType=(value)
-      @productIDType = value
-    end
-
-    def IDValue
-      @iDValue
-    end
-
-    def IDValue=(value)
-      @iDValue = value
-    end
+    attr_accessor :productIDType
+    attr_accessor :iDValue
 
     def initialize(productIDType = nil, iDValue = nil)
       @productIDType = productIDType
@@ -31,50 +16,17 @@ module TitlePage
   end
 
   # {urn:TitleQuery}Title
+  #   titleType - SOAP::SOAPString
+  #   titleText - SOAP::SOAPString
+  #   titlePrefix - SOAP::SOAPString
+  #   titleWithoutPrefix - SOAP::SOAPString
+  #   subtitle - SOAP::SOAPString
   class Title
-    @@schema_type = "Title"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["titleType", ["SOAP::SOAPString", XSD::QName.new(nil, "TitleType")]], ["titleText", ["SOAP::SOAPString", XSD::QName.new(nil, "TitleText")]], ["titlePrefix", ["SOAP::SOAPString", XSD::QName.new(nil, "TitlePrefix")]], ["titleWithoutPrefix", ["SOAP::SOAPString", XSD::QName.new(nil, "TitleWithoutPrefix")]], ["subtitle", ["SOAP::SOAPString", XSD::QName.new(nil, "Subtitle")]]]
-
-    def TitleType
-      @titleType
-    end
-
-    def TitleType=(value)
-      @titleType = value
-    end
-
-    def TitleText
-      @titleText
-    end
-
-    def TitleText=(value)
-      @titleText = value
-    end
-
-    def TitlePrefix
-      @titlePrefix
-    end
-
-    def TitlePrefix=(value)
-      @titlePrefix = value
-    end
-
-    def TitleWithoutPrefix
-      @titleWithoutPrefix
-    end
-
-    def TitleWithoutPrefix=(value)
-      @titleWithoutPrefix = value
-    end
-
-    def Subtitle
-      @subtitle
-    end
-
-    def Subtitle=(value)
-      @subtitle = value
-    end
+    attr_accessor :titleType
+    attr_accessor :titleText
+    attr_accessor :titlePrefix
+    attr_accessor :titleWithoutPrefix
+    attr_accessor :subtitle
 
     def initialize(titleType = nil, titleText = nil, titlePrefix = nil, titleWithoutPrefix = nil, subtitle = nil)
       @titleType = titleType
@@ -86,58 +38,19 @@ module TitlePage
   end
 
   # {urn:TitleQuery}Contributor
+  #   sequenceNumber - SOAP::SOAPInteger
+  #   contributorRole - SOAP::SOAPString
+  #   personName - SOAP::SOAPString
+  #   personNameInverted - SOAP::SOAPString
+  #   titlesBeforeNames - SOAP::SOAPString
+  #   keyNames - SOAP::SOAPString
   class Contributor
-    @@schema_type = "Contributor"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["sequenceNumber", ["SOAP::SOAPInteger", XSD::QName.new(nil, "SequenceNumber")]], ["contributorRole", ["SOAP::SOAPString", XSD::QName.new(nil, "ContributorRole")]], ["personName", ["SOAP::SOAPString", XSD::QName.new(nil, "PersonName")]], ["personNameInverted", ["SOAP::SOAPString", XSD::QName.new(nil, "PersonNameInverted")]], ["titlesBeforeNames", ["SOAP::SOAPString", XSD::QName.new(nil, "TitlesBeforeNames")]], ["keyNames", ["SOAP::SOAPString", XSD::QName.new(nil, "KeyNames")]]]
-
-    def SequenceNumber
-      @sequenceNumber
-    end
-
-    def SequenceNumber=(value)
-      @sequenceNumber = value
-    end
-
-    def ContributorRole
-      @contributorRole
-    end
-
-    def ContributorRole=(value)
-      @contributorRole = value
-    end
-
-    def PersonName
-      @personName
-    end
-
-    def PersonName=(value)
-      @personName = value
-    end
-
-    def PersonNameInverted
-      @personNameInverted
-    end
-
-    def PersonNameInverted=(value)
-      @personNameInverted = value
-    end
-
-    def TitlesBeforeNames
-      @titlesBeforeNames
-    end
-
-    def TitlesBeforeNames=(value)
-      @titlesBeforeNames = value
-    end
-
-    def KeyNames
-      @keyNames
-    end
-
-    def KeyNames=(value)
-      @keyNames = value
-    end
+    attr_accessor :sequenceNumber
+    attr_accessor :contributorRole
+    attr_accessor :personName
+    attr_accessor :personNameInverted
+    attr_accessor :titlesBeforeNames
+    attr_accessor :keyNames
 
     def initialize(sequenceNumber = nil, contributorRole = nil, personName = nil, personNameInverted = nil, titlesBeforeNames = nil, keyNames = nil)
       @sequenceNumber = sequenceNumber
@@ -150,26 +63,11 @@ module TitlePage
   end
 
   # {urn:TitleQuery}Stock
+  #   onHand - SOAP::SOAPString
+  #   onOrder - SOAP::SOAPString
   class Stock
-    @@schema_type = "Stock"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["onHand", ["SOAP::SOAPString", XSD::QName.new(nil, "OnHand")]], ["onOrder", ["SOAP::SOAPString", XSD::QName.new(nil, "OnOrder")]]]
-
-    def OnHand
-      @onHand
-    end
-
-    def OnHand=(value)
-      @onHand = value
-    end
-
-    def OnOrder
-      @onOrder
-    end
-
-    def OnOrder=(value)
-      @onOrder = value
-    end
+    attr_accessor :onHand
+    attr_accessor :onOrder
 
     def initialize(onHand = nil, onOrder = nil)
       @onHand = onHand
@@ -178,26 +76,11 @@ module TitlePage
   end
 
   # {urn:TitleQuery}Price
+  #   priceTypeCode - SOAP::SOAPString
+  #   priceAmount - SOAP::SOAPDecimal
   class Price
-    @@schema_type = "Price"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["priceTypeCode", ["SOAP::SOAPString", XSD::QName.new(nil, "PriceTypeCode")]], ["priceAmount", ["SOAP::SOAPDecimal", XSD::QName.new(nil, "PriceAmount")]]]
-
-    def PriceTypeCode
-      @priceTypeCode
-    end
-
-    def PriceTypeCode=(value)
-      @priceTypeCode = value
-    end
-
-    def PriceAmount
-      @priceAmount
-    end
-
-    def PriceAmount=(value)
-      @priceAmount = value
-    end
+    attr_accessor :priceTypeCode
+    attr_accessor :priceAmount
 
     def initialize(priceTypeCode = nil, priceAmount = nil)
       @priceTypeCode = priceTypeCode
@@ -206,66 +89,21 @@ module TitlePage
   end
 
   # {urn:TitleQuery}SupplyDetail
+  #   supplierName - SOAP::SOAPString
+  #   supplierRole - SOAP::SOAPString
+  #   productAvailability - SOAP::SOAPString
+  #   expectedShipDate - SOAP::SOAPString
+  #   stock - TitlePage::Stock
+  #   packQuantity - SOAP::SOAPInteger
+  #   price - TitlePage::Price
   class SupplyDetail
-    @@schema_type = "SupplyDetail"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["supplierName", ["SOAP::SOAPString", XSD::QName.new(nil, "SupplierName")]], ["supplierRole", ["SOAP::SOAPString", XSD::QName.new(nil, "SupplierRole")]], ["productAvailability", ["SOAP::SOAPString", XSD::QName.new(nil, "ProductAvailability")]], ["expectedShipDate", ["SOAP::SOAPString", XSD::QName.new(nil, "ExpectedShipDate")]], ["stock", ["Stock", XSD::QName.new(nil, "Stock")]], ["packQuantity", ["SOAP::SOAPInteger", XSD::QName.new(nil, "PackQuantity")]], ["price", ["Price", XSD::QName.new(nil, "Price")]]]
-
-    def SupplierName
-      @supplierName
-    end
-
-    def SupplierName=(value)
-      @supplierName = value
-    end
-
-    def SupplierRole
-      @supplierRole
-    end
-
-    def SupplierRole=(value)
-      @supplierRole = value
-    end
-
-    def ProductAvailability
-      @productAvailability
-    end
-
-    def ProductAvailability=(value)
-      @productAvailability = value
-    end
-
-    def ExpectedShipDate
-      @expectedShipDate
-    end
-
-    def ExpectedShipDate=(value)
-      @expectedShipDate = value
-    end
-
-    def Stock
-      @stock
-    end
-
-    def Stock=(value)
-      @stock = value
-    end
-
-    def PackQuantity
-      @packQuantity
-    end
-
-    def PackQuantity=(value)
-      @packQuantity = value
-    end
-
-    def Price
-      @price
-    end
-
-    def Price=(value)
-      @price = value
-    end
+    attr_accessor :supplierName
+    attr_accessor :supplierRole
+    attr_accessor :productAvailability
+    attr_accessor :expectedShipDate
+    attr_accessor :stock
+    attr_accessor :packQuantity
+    attr_accessor :price
 
     def initialize(supplierName = nil, supplierRole = nil, productAvailability = nil, expectedShipDate = nil, stock = nil, packQuantity = nil, price = nil)
       @supplierName = supplierName
@@ -278,57 +116,16 @@ module TitlePage
     end
   end
 
-  # {urn:TitleQuery}ArrayOfContributor
-  class ArrayOfContributor < ::Array
-    @@schema_type = "Contributor"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["item", ["Contributor", XSD::QName.new(nil, "item")]]]
-  end
-
-  # {urn:TitleQuery}ArrayOfProductIdentifier
-  class ArrayOfProductIdentifier < ::Array
-    @@schema_type = "ProductIdentifier"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["item", ["ProductIdentifier", XSD::QName.new(nil, "item")]]]
-  end
-
   # {urn:TitleQuery}Product
+  #   productIdentifiers - TitlePage::ArrayOfProductIdentifier
+  #   title - TitlePage::Title
+  #   contributors - TitlePage::ArrayOfContributor
+  #   supplyDetail - TitlePage::SupplyDetail
   class Product
-    @@schema_type = "Product"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["productIdentifiers", ["ArrayOfProductIdentifier", XSD::QName.new(nil, "ProductIdentifiers")]], ["title", ["Title", XSD::QName.new(nil, "Title")]], ["contributors", ["ArrayOfContributor", XSD::QName.new(nil, "Contributors")]], ["supplyDetail", ["SupplyDetail", XSD::QName.new(nil, "SupplyDetail")]]]
-
-    def ProductIdentifiers
-      @productIdentifiers
-    end
-
-    def ProductIdentifiers=(value)
-      @productIdentifiers = value
-    end
-
-    def Title
-      @title
-    end
-
-    def Title=(value)
-      @title = value
-    end
-
-    def Contributors
-      @contributors
-    end
-
-    def Contributors=(value)
-      @contributors = value
-    end
-
-    def SupplyDetail
-      @supplyDetail
-    end
-
-    def SupplyDetail=(value)
-      @supplyDetail = value
-    end
+    attr_accessor :productIdentifiers
+    attr_accessor :title
+    attr_accessor :contributors
+    attr_accessor :supplyDetail
 
     def initialize(productIdentifiers = nil, title = nil, contributors = nil, supplyDetail = nil)
       @productIdentifiers = productIdentifiers
@@ -339,39 +136,35 @@ module TitlePage
   end
 
   # {urn:TitleQuery}SearchResults
+  #   iSBN - SOAP::SOAPString
+  #   eAN - SOAP::SOAPString
+  #   iSBN13 - SOAP::SOAPString
+  #   product - TitlePage::Product
   class SearchResults
-    @@schema_type = "SearchResults"
-    @@schema_ns = "urn:TitleQuery"
-    @@schema_element = [["iSBN", ["SOAP::SOAPString", XSD::QName.new(nil, "ISBN")]], ["eAN", ["SOAP::SOAPString", XSD::QName.new(nil, "EAN")]], ["product", ["Product", XSD::QName.new(nil, "Product")]]]
+    attr_accessor :ISBN
+    attr_accessor :EAN
+    attr_accessor :ISBN13
+    attr_accessor :Product
 
-    def ISBN
-      @iSBN
-    end
-
-    def ISBN=(value)
-      @iSBN = value
-    end
-
-    def EAN
-      @eAN
-    end
-
-    def EAN=(value)
-      @eAN = value
+    def initialize(iSBN = nil, eAN = nil, iSBN13 = nil, product = nil)
+      @iSBN = iSBN
+      @eAN = eAN
+      @iSBN13 = iSBN13
+      @product = product
     end
 
     def Product
       @product
     end
-
-    def Product=(value)
-      @product = value
-    end
-
-    def initialize(iSBN = nil, eAN = nil, product = nil)
-      @iSBN = iSBN
-      @eAN = eAN
-      @product = product
-    end
   end
+
+  # {urn:TitleQuery}ArrayOfContributor
+  class ArrayOfContributor < ::Array
+  end
+
+  # {urn:TitleQuery}ArrayOfProductIdentifier
+  class ArrayOfProductIdentifier < ::Array
+  end
+
+
 end
