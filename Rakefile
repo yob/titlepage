@@ -59,28 +59,22 @@ Rake::RDocTask.new("doc") do |rdoc|
 end
 
 spec = Gem::Specification.new do |spec|
-	spec.name = PKG_NAME
-	spec.version = PKG_VERSION
-	spec.platform = Gem::Platform::RUBY
-	spec.summary = "A library for using the titlepage.com API"
-	spec.files =  Dir.glob("{examples,lib,specs}/**/**/*") +
-                      ["Rakefile"]
-  
+  spec.name = PKG_NAME
+  spec.version = PKG_VERSION
+  spec.platform = Gem::Platform::RUBY
+  spec.summary = "A library for using the titlepage.com API"
+  spec.files =  Dir.glob("{examples,lib,specs}/**/**/*") + ["Rakefile"]
   spec.require_path = "lib"
   spec.test_files = Dir[ "specs/**/*.rb" ]
-	spec.has_rdoc = true
-	spec.extra_rdoc_files = %w{README COPYING LICENSE}
-	spec.rdoc_options << '--title' << 'titlepage Documentation' <<
-	                     '--main'  << 'README' << '-q'
+  spec.has_rdoc = true
+  spec.extra_rdoc_files = %w{README COPYING LICENSE}
+  spec.rdoc_options << '--title' << 'titlepage Documentation' << '--main'  << 'README' << '-q'
   spec.add_dependency('rbook-isbn', '>= 1.0')
   spec.author = "James Healy"
-	spec.email = "jimmy@deefa.com"
-	spec.rubyforge_project = "rbook"
-	spec.homepage = "http://rbook.rubyforge.org/"
-	spec.description = <<END_DESC
-  This library is designed to assist with using the titlepage.com
-  SOAP API.
-END_DESC
+  spec.email = "jimmy@deefa.com"
+  spec.rubyforge_project = "rbook"
+  spec.homepage = "http://rbook.rubyforge.org/"
+  spec.description = "This library is designed to assist with using the titlepage.com SOAP API."
 end
 
 desc "Generate a gem for rbook"

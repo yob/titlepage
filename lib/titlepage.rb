@@ -25,10 +25,10 @@ require File.dirname(__FILE__) + '/titlepage/wwwclient'
 #
 # All examples require the following two lines at the top of your file:
 #   require 'rubygems'
-#   require 'rbook/titlepage'
+#   require 'titlepage'
 #
 # Basic usage:
-#  tp = RBook::TitlePage::Client.new
+#  tp = TitlePage::Client.new
 #  tp.login('someuser','topsecret')
 #  puts tp.find("0091835135").inspect
 #  sleep 3
@@ -36,7 +36,7 @@ require File.dirname(__FILE__) + '/titlepage/wwwclient'
 #  tp.logout
 #
 # Alternative Usage:
-#  RBook::TitlePage::Client.open("username","password") do |tp|
+#  TitlePage::Client.open("username","password") do |tp|
 #    puts tp.find("0091835135").inspect
 #    sleep 3
 #    puts tp.find("9780672327568").inspect

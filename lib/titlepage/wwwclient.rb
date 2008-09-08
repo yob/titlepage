@@ -5,15 +5,23 @@ require 'net/http'
 
 module TitlePage
 
+  # A helper class for grabbing ONIX files from titlepage.com
+  #
+  # A valid login is required, see the site for information on applying
+  # for access.
+  #
   # You should be aware of any limits of query volume imposed by the provider - currently a
   # maximum of 30 queries per minute is permitted.
+  #
+  # = Usage
+  #
+  #   TitlePage::WWWClient.open("username","password") do |tp|
+  #     puts tp.get_onix_file("9780091835132")
+  #   end
+  #
   class WWWClient
 
     TITLEPAGE_DOMAIN = "www.titlepage.com"
-    @@uri = nil
-
-    def initialize
-    end
 
     def get_onix_file(isbn)
       isbn = RBook::ISBN.convert_to_isbn13(isbn)
@@ -73,7 +81,7 @@ module TitlePage
     # a convenience method to make queries to title page a little cleaner. This function
     # essentially calls the login and logout functions for you automatically.
     #
-    #  RBook::TitlePage::WWWClient.open("username","password") do |tp|
+    #  TitlePage::WWWClient.open("username","password") do |tp|
     #    result = tp.get_onix_file("9780091835132")
     #  end
     def self.open(username, password)

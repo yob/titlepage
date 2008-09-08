@@ -8,7 +8,7 @@ module TitlePage
   # You should be aware of any limits of query volume imposed by the provider - currently a
   # maximum of 30 queries per minute is permitted.
   #
-  # For a basic usage overview, check out RBook::TitlePage
+  # For a basic usage overview, check out TitlePage
   class Client
 
     # Optional driver parameter allows an alternative SOAP driver to the default to be specified.
@@ -78,9 +78,7 @@ module TitlePage
 
       begin
         tp.login(username, password)
-
-        yield(tp)
-
+        yield tp
       ensure
         tp.logout
       end
