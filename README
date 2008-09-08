@@ -1,14 +1,14 @@
 Titlepage is a service provided to the Australian book industry by the
 Australian Publishers Association (APA). Suppliers and publishers list price
-and availability data for thier titles, and booksellers can access the data
+and availability data for their titles, and booksellers can access the data
 free of charge.
 
-This library wraps the SOAP API in a useable object structure.
+This library wraps the SOAP API in a usable object structure.
 
-The service requires authentication, see the website for how to request
+The service requires authentication: see the website for how to request
 an account.
 
-I am in no way personalyl affiliated with the APA or the Titlepage service.
+I am in no way personally affiliated with the APA or the Titlepage service.
 
 Links:
 
