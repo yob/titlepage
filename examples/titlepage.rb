@@ -4,9 +4,9 @@
 #   require 'rubygems'
 #   require 'rbook/titlepage'
 require "rubygems"
-require File.dirname(__FILE__) + '/../lib/rbook/titlepage'
+require File.dirname(__FILE__) + '/../lib/titlepage'
 
-RBook::TitlePage::Client.open("username", "password") do |tp|
+TitlePage::Client.open("username", "password") do |tp|
 
   puts tp.find("0091835135").inspect
   sleep 3
