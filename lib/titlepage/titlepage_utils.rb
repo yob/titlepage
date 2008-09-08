@@ -13,6 +13,22 @@ module TitlePage
       @productIDType = productIDType
       @iDValue = iDValue
     end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
+    end
   end
 
   # {urn:TitleQuery}Title
@@ -34,6 +50,22 @@ module TitlePage
       @titlePrefix = titlePrefix
       @titleWithoutPrefix = titleWithoutPrefix
       @subtitle = subtitle
+    end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
     end
   end
 
@@ -60,6 +92,22 @@ module TitlePage
       @titlesBeforeNames = titlesBeforeNames
       @keyNames = keyNames
     end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
+    end
   end
 
   # {urn:TitleQuery}Stock
@@ -73,6 +121,22 @@ module TitlePage
       @onHand = onHand
       @onOrder = onOrder
     end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
+    end
   end
 
   # {urn:TitleQuery}Price
@@ -85,6 +149,22 @@ module TitlePage
     def initialize(priceTypeCode = nil, priceAmount = nil)
       @priceTypeCode = priceTypeCode
       @priceAmount = priceAmount
+    end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
     end
   end
 
@@ -114,6 +194,22 @@ module TitlePage
       @packQuantity = packQuantity
       @price = price
     end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
+    end
   end
 
   # {urn:TitleQuery}Product
@@ -133,6 +229,22 @@ module TitlePage
       @contributors = contributors
       @supplyDetail = supplyDetail
     end
+
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
+    end
   end
 
   # {urn:TitleQuery}SearchResults
@@ -141,10 +253,10 @@ module TitlePage
   #   iSBN13 - SOAP::SOAPString
   #   product - TitlePage::Product
   class SearchResults
-    attr_accessor :ISBN
-    attr_accessor :EAN
-    attr_accessor :ISBN13
-    attr_accessor :Product
+    attr_accessor :iSBN
+    attr_accessor :eAN
+    attr_accessor :iSBN13
+    attr_accessor :product
 
     def initialize(iSBN = nil, eAN = nil, iSBN13 = nil, product = nil)
       @iSBN = iSBN
@@ -153,8 +265,20 @@ module TitlePage
       @product = product
     end
 
-    def Product
-      @product
+    # An older version of soap4r that was used to generate boilerplate code
+    # in versions of this gem <= 0.9.3 created methods that started with
+    # capitals. Detect when some code calls these old method names and
+    # print a deprecation warning.
+    def method_missing(method, *arguments)
+      new_method = method.to_s[0,1].downcase
+      new_method << method.to_s[1,20]
+
+      if self.respond_to?(new_method)
+        $stderr.puts "Warning: #{method} is deprecated. Use #{new_method} instead"
+        self.send(new_method, *arguments)
+      else
+        super
+      end
     end
   end
 
@@ -165,6 +289,5 @@ module TitlePage
   # {urn:TitleQuery}ArrayOfProductIdentifier
   class ArrayOfProductIdentifier < ::Array
   end
-
 
 end
