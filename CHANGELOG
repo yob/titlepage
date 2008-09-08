@@ -1,0 +1,13 @@
+v0.9.5 (8th September 2008)
+- Used Soap4R to regenerate our SOAP boilerplate code
+  - provide access to SOAP methods that didn't exist the last time the code
+    was generated
+- Switch to using SearchByISBN13 instead of SearchByEAN
+  - SearchByISBN13 is a mandatory field for supplies that lists data on 
+    titlepage. EAN is optional, so by using SearchByEAN we were not finding all
+    the titles we expected.
+- Moved of of the RBook namespace
+
+
+Pre v0.9.5
+- No Changelog kept
