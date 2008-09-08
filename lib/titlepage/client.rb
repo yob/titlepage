@@ -70,15 +70,14 @@ module TitlePage
           proxy = DRbObject.new_with_uri(@@uri)
           result = proxy.find(@username, @password, isbn) 
         else
-          result = @driver.SearchByEAN(@token, isbn)
+          result = @driver.SearchByISBN13(@token, isbn)
         end
+
         if result.Product.nil?
           return nil
         else
           return result
         end
-      rescue 
-        return nil
       end
 
     end
