@@ -1,0 +1,17 @@
+Titlepage is a service provided to the Australian book industry by the
+Australian Publishers Association (APA). Suppliers and publishers list price
+and availability data for thier titles, and booksellers can access the data
+free of charge.
+
+This library wraps the SOAP API in a useable object structure.
+
+The service requires authentication, see the website for how to request
+an account.
+
+I am in no way personalyl affiliated with the APA or the Titlepage service.
+
+Links:
+
+- Library Source: http://github.com/yob/titlepage/tree/master
+- Rubyforge Project: http://rubyforge.org/projects/rbook/
+- Official Titlepage Website: http://www.titlepage.com.au
