@@ -1,5 +1,6 @@
 v0.9.6 (XXX)
 - Add gem dependency on soap4r
+- Stop using a deprecated method
 
 v0.9.5 (8th September 2008)
 - Used Soap4R to regenerate our SOAP boilerplate code
