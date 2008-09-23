@@ -46,7 +46,7 @@ module TitlePage
       begin
         result = @driver.SearchByISBN13(@token, isbn)
 
-        if result.Product.nil?
+        if result.product.nil?
           return nil
         else
           return result
