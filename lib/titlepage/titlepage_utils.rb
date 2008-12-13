@@ -265,6 +265,12 @@ module TitlePage
       @product = product
     end
 
+    # convenience method
+    #
+    def Product
+      @product
+    end
+
     # An older version of soap4r that was used to generate boilerplate code
     # in versions of this gem <= 0.9.3 created methods that started with
     # capitals. Detect when some code calls these old method names and
