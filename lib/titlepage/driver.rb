@@ -40,7 +40,7 @@ module TitlePage
         message.add "ISBN", isbn
       end
       response.document.xpath("//SearchResults/Product").collect do |node|
-        parse_product_node(node)
+        TitlePage::Product.from_xml(node)
       end
     end
 
@@ -55,7 +55,7 @@ module TitlePage
         message.add "ISBN13", isbn
       end
       response.document.xpath("//SearchResults/Product").collect do |node|
-        parse_product_node(node)
+        TitlePage::Product.from_xml(node)
       end
     end
 
@@ -74,14 +74,8 @@ module TitlePage
         message.add "EAN", ean
       end
       response.document.xpath("//SearchResults/Product").collect do |node|
-        parse_product_node(node)
+        TitlePage::Product.from_xml(node)
       end
-    end
-
-    private
-
-    def parse_product_node(node)
-      node.xpath("//IDValue/text()")
     end
 
   end
