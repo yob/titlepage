@@ -4,7 +4,9 @@ require 'bigdecimal'
 require 'net/http'
 require 'rubygems'
 gem 'troelskn-handsoap', '0.1.2'
+gem 'andand', '1.3.1'
 require "handsoap"
+require "andand"
 
 require 'rbook/isbn'
 

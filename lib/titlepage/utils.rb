@@ -83,11 +83,11 @@ module TitlePage
       #  <TitleText xsi:type="xsd:string">Fight Club</TitleText>
       #</Title>
       title = self.new
-      title.title_type = node.xpath("//Title/TitleType/text()").to_s
-      title.title_text = node.xpath("//Title/TitleText/text()").to_s
-      title.title_prefix = node.xpath("//Title/TitlePrefix/text()").to_s
-      title.title_without_prefix = node.xpath("//Title/TitleWithoutPrefix/text()").to_s
-      title.subtitle = node.xpath("//Title/Subtitle/text()").to_s
+      title.title_type = node.xpath("//Title/TitleType/text()").first.andand.to_s
+      title.title_text = node.xpath("//Title/TitleText/text()").first.andand.to_s
+      title.title_prefix = node.xpath("//Title/TitlePrefix/text()").first.andand.to_s
+      title.title_without_prefix = node.xpath("//Title/TitleWithoutPrefix/text()").first.andand.to_s
+      title.subtitle = node.xpath("//Title/Subtitle/text()").first.andand.to_s
 
       # normalise encodings to utf-8
       title.normalise_encodings!(node.document.encoding)
@@ -123,12 +123,12 @@ module TitlePage
       #  </item>
       #</Contributors>
       contrib = self.new
-      contrib.sequence_number = node.xpath("//item/SequenceNumber/text()").to_s.to_i
-      contrib.contributor_role = node.xpath("//item/ContributorRole/text()").to_s
-      contrib.person_name = node.xpath("//item/PersonName/text()").to_s
-      contrib.person_name_inverted = node.xpath("//item/PersonNameInverted/text()").to_s
-      contrib.titles_before_names = node.xpath("//item/TitlesBeforeNames/text()").to_s
-      contrib.key_names = node.xpath("//item/KeyNames/text()").to_s
+      contrib.sequence_number = node.xpath("//item/SequenceNumber/text()").first.andand.to_s.andand.to_i
+      contrib.contributor_role = node.xpath("//item/ContributorRole/text()").first.andand.to_s
+      contrib.person_name = node.xpath("//item/PersonName/text()").first.andand.to_s
+      contrib.person_name_inverted = node.xpath("//item/PersonNameInverted/text()").first.andand.to_s
+      contrib.titles_before_names = node.xpath("//item/TitlesBeforeNames/text()").first.andand.to_s
+      contrib.key_names = node.xpath("//item/KeyNames/text()").first.andand.to_s
       contrib.normalise_encodings!(node.document.encoding)
       contrib
     end
@@ -155,8 +155,8 @@ module TitlePage
       #  <OnOrder xsi:type="xsd:string">Yes</OnOrder>
       #</Stock>
       stock = self.new
-      stock.on_hand = node.xpath("//Stock/OnHand/text()").to_s
-      stock.on_order = node.xpath("//Stock/OnOrder/text()").to_s
+      stock.on_hand = node.xpath("//Stock/OnHand/text()").first.andand.to_s
+      stock.on_order = node.xpath("//Stock/OnOrder/text()").first.andand.to_s
       stock.normalise_encodings!(node.document.encoding)
       stock
     end
@@ -181,8 +181,8 @@ module TitlePage
       #  <PriceAmount xsi:type="xsd:decimal">24.95</PriceAmount>
       #</Price>
       price = self.new
-      price.price_type_code = node.xpath("//Price/PriceTypeCode/text()").to_s
-      val = node.xpath("//Price/PriceAmount/text()").to_s
+      price.price_type_code = node.xpath("//Price/PriceTypeCode/text()").first.andand.to_s
+      val = node.xpath("//Price/PriceAmount/text()").first.andand.to_s
       price.price_amount = BigDecimal.new(val) if val.size > 0
       price.normalise_encodings!(node.document.encoding)
       price
@@ -223,13 +223,13 @@ module TitlePage
       #</SupplyDetail>
 
       sd = self.new
-      sd.supplier_name = node.xpath("//SupplyDetail/SupplierName/text()").to_s
-      sd.supplier_role = node.xpath("//SupplyDetail/SupplierRole/text()").to_s
-      sd.product_availability = node.xpath("//SupplyDetail/ProductAvailability/text()").to_s
-      sd.expected_ship_date = node.xpath("//SupplyDetail/ExpectedShipDate/text()").to_s
-      sd.stock = TitlePage::Stock.from_xml(node.xpath("//SupplyDetail/Stock"))
-      sd.pack_quantity = node.xpath("//SupplyDetail/PackQuantity/text()").to_s.to_i
-      sd.price = TitlePage::Price.from_xml(node.xpath("//SupplyDetail/Price"))
+      sd.supplier_name = node.xpath("//SupplyDetail/SupplierName/text()").first.andand.to_s
+      sd.supplier_role = node.xpath("//SupplyDetail/SupplierRole/text()").first.andand.to_s
+      sd.product_availability = node.xpath("//SupplyDetail/ProductAvailability/text()").first.andand.to_s
+      sd.expected_ship_date = node.xpath("//SupplyDetail/ExpectedShipDate/text()").first.andand.to_s
+      sd.stock = TitlePage::Stock.from_xml(node.xpath("//SupplyDetail/Stock").first)
+      sd.pack_quantity = node.xpath("//SupplyDetail/PackQuantity/text()").first.andand.to_s.andand.to_i
+      sd.price = TitlePage::Price.from_xml(node.xpath("//SupplyDetail/Price").first)
       sd.normalise_encodings!(node.document.encoding)
       sd
     end
