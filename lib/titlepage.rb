@@ -40,7 +40,6 @@ module TitlePage
     :uri => "http://www.titlepage.com.au/ws/TitleQuery.php",
     :version => 1
   }
-  class InvalidRubyVersionError < RuntimeError;end;
   class NotLoggedInError < RuntimeError;end;
 end
 
