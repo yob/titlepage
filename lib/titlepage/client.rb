@@ -14,13 +14,13 @@ module TitlePage
     # Optional driver parameter allows an alternative SOAP driver to the default to be specified.
     # This is primarily for testing purposes and probably isn't useful to anyone in the real world.
     def initialize
-      @driver = TitleQueryPortType.new
+      @driver = TitlePage::Driver.new
       @token  = nil
     end
 
     # login to the titlepage API.
+    #
     def login(username, password)
-      raise InvalidRubyVersionError, 'Ruby 1.8.3 or higher is required to use this class' unless RUBY_VERSION >= "1.8.3"
       logout if @token
       @token = @driver.login(username, password)
       if @token
@@ -31,6 +31,7 @@ module TitlePage
     end
 
     # logout from the titlepage API
+    #
     def logout
       if @token
         @driver.logout(@token)
@@ -38,29 +39,31 @@ module TitlePage
       end
     end
 
-    # retrieve information on a specified ISBN
+    # Retrieve information on a specified ISBN. Can be an ISBN10 or ISBN13.
+    #
     def find(isbn)
       return NotLoggedInError, 'You must login to titlepage API before performing a search' unless @token
       isbn = RBook::ISBN::convert_to_isbn13(isbn)
       return nil if isbn.nil?
       begin
-        result = @driver.SearchByISBN13(@token, isbn)
+        results = @driver.search_by_isbn13(@token, isbn)
 
-        if result.product.nil?
+        if results.size == 0
           return nil
         else
-          return result
+          return results.first
         end
       end
     end
 
     # a convenience method to make single queries to title page a little cleaner. 
     #
-    #  result = RBook::TitlePage.find("username","password","9780091835132")
+    #  result = TitlePage.find("username","password","9780091835132")
     #  puts result.inspect
+    #
     def self.find(username, password, isbn)
       result = nil
-      RBook::TitlePage::Client.open(username, password) do |tp|
+      TitlePage::Client.open(username, password) do |tp|
         result = tp.find(isbn)
       end
       return result
@@ -69,7 +72,7 @@ module TitlePage
     # a convenience method to make queries to title page a little cleaner. This function
     # essentially calls the login and logout functions for you automatically.
     #
-    #  RBook::TitlePage.open("username","password") do |tp|
+    #  TitlePage.open("username","password") do |tp|
     #    result = tp.find("9780091835132")
     #  end
     def self.open(username, password)
