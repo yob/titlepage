@@ -1,3 +1,10 @@
+v1.0.0 (27th May 2009)
+- switch from using soap4r to handsoap
+  - soap4r is old, crufty, un-rubyish and currently 1.9 incompatible
+  - Basic API for authenticating and searching is identical
+  - API CHANGE: classes that represent matching products have had their methods
+    changed to folow ruby convention
+
 v0.9.6 (14th December 2008)
 - Add gem dependency on soap4r
 - Stop using a deprecated method
