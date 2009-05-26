@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module TitlePage
   class Driver < Handsoap::Service
     endpoint TitlePage::SERVICE_ENDPOINT

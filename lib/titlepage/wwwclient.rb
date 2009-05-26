@@ -1,7 +1,4 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__) + "/../")
-
-require 'rbook/isbn'
-require 'net/http'
+# encoding: utf-8
 
 module TitlePage
 
