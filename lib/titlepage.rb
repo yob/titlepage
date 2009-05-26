@@ -47,3 +47,4 @@ end
 require File.dirname(__FILE__) + '/titlepage/driver'
 require File.dirname(__FILE__) + '/titlepage/utils'
 require File.dirname(__FILE__) + '/titlepage/client'
+require File.dirname(__FILE__) + '/titlepage/wwwclient'
