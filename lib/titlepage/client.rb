@@ -41,19 +41,30 @@ module TitlePage
 
     # Retrieve information on a specified ISBN. Can be an ISBN10 or ISBN13.
     #
-    def find(isbn)
+    def find(type, isbn)
+      case type
+      when :first
+        first(isbn)
+      when :all
+        all(isbn)
+      else
+        raise ArgumentError, "invalid type #{type}"
+      end
+    end
+
+    def all(isbn)
       return NotLoggedInError, 'You must login to titlepage API before performing a search' unless @token
       isbn = RBook::ISBN::convert_to_isbn13(isbn)
       return nil if isbn.nil?
-      begin
-        results = @driver.search_by_isbn13(@token, isbn)
+      @driver.search_by_isbn13(@token, isbn)
+    end
 
-        if results.size == 0
-          return nil
-        else
-          return results.first
-        end
-      end
+    def first(isbn)
+      all(isbn).first
+    end
+
+    def last(isbn)
+      all(isbn).last
     end
 
     # a convenience method to make single queries to title page a little cleaner. 

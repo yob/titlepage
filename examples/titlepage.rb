@@ -7,8 +7,8 @@ require File.dirname(__FILE__) + '/../lib/titlepage'
 
 TitlePage::Client.open("username", "password") do |tp|
 
-  puts tp.find("0091835135").inspect
+  puts tp.first("0091835135").inspect
   sleep 3
-  puts tp.find("1741146712").inspect
+  puts tp.all("1741146712").inspect
 
 end

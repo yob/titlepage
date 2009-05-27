@@ -1,3 +1,11 @@
+v1.1.0 (27th May 2009)
+- API CHANGE: make find method more ActiveRecord like
+  - Client#find(:first, isbn)
+  - Client#find(:all, isbn)
+  - Client#first(isbn)
+  - Client#last(isbn)
+  - Client#all(isbn)
+
 v1.0.0 (27th May 2009)
 - switch from using soap4r to handsoap
   - soap4r is old, crufty, un-rubyish and currently 1.9 incompatible
@@ -18,7 +26,6 @@ v0.9.5 (8th September 2008)
     titlepage. EAN is optional, so by using SearchByEAN we were not finding all
     the titles we expected.
 - Moved of of the RBook namespace
-
 
 Pre v0.9.5
 - No Changelog kept
