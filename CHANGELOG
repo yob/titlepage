@@ -1,3 +1,6 @@
+v1.1.1 (15th June 2009)
+- Bump handsoap dependency to the latest version (0.2.7)
+
 v1.1.0 (27th May 2009)
 - API CHANGE: make find method more ActiveRecord like
   - Client#find(:first, isbn)
@@ -22,7 +25,7 @@ v0.9.5 (8th September 2008)
   - provide access to SOAP methods that didn't exist the last time the code
     was generated
 - Switch to using SearchByISBN13 instead of SearchByEAN
-  - SearchByISBN13 is a mandatory field for supplies that lists data on 
+  - SearchByISBN13 is a mandatory field for suppliers that lists data on
     titlepage. EAN is optional, so by using SearchByEAN we were not finding all
     the titles we expected.
 - Moved of of the RBook namespace

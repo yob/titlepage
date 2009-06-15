@@ -6,7 +6,7 @@ require 'rake/testtask'
 require "rake/gempackagetask"
 require 'spec/rake/spectask'
 
-PKG_VERSION = "1.1.0"
+PKG_VERSION = "1.1.1"
 PKG_NAME = "titlepage"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBYFORGE_PROJECT = 'rbook'
@@ -71,7 +71,7 @@ spec = Gem::Specification.new do |spec|
   spec.rdoc_options << '--title' << 'titlepage Documentation' << '--main'  << 'README' << '-q'
   spec.add_dependency('rbook-isbn', '>= 1.0')
   spec.add_dependency('andand', '1.3.1')
-  spec.add_dependency('troelskn-handsoap', '0.1.2')
+  spec.add_dependency('troelskn-handsoap', '0.2.7')
   spec.author = "James Healy"
   spec.email = "jimmy@deefa.com"
   spec.rubyforge_project = "rbook"
