@@ -269,5 +269,24 @@ module TitlePage
 
       product
     end
+
+    # return a simple hash representation of this product
+    #
+    def to_hash
+      {
+        :supplier => self.supply_detail.supplier_name,
+        :title    => self.title.title_text,
+        :ean      => self.product_identifiers.first.id_value,
+        :price    => self.supply_detail.price.price_amount,
+        :availability => self.supply_detail.product_availability,
+        :contributors => self.contributors.collect { |c| c.person_name_inverted }
+      }
+    end
+
+    # return a simple YAML representation of this product
+    #
+    def to_yaml
+      YAML.dump(to_hash)
+    end
   end
 end
