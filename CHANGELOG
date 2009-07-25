@@ -1,5 +1,6 @@
 v1.2 (25th July 2009)
 - Add TitlePage::Product#to_hash() and TitlePage::Product#to_yaml()
+- Bump handsoap dependency to the latest version (0.3.6)
 
 v1.1.1 (15th June 2009)
 - Bump handsoap dependency to the latest version (0.2.7)
