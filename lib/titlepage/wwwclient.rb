@@ -30,7 +30,7 @@ module TitlePage
         data = [
           "posted=yes",
           "quicksearch=#{isbn}",
-          "qsrchby=ean",
+          "qsrchby=isbn13",
             "detailed=Search"
         ].join("&")
         http.post('/results.php', data, headers)
@@ -60,7 +60,8 @@ module TitlePage
           "pwd=#{password}",
           "login=Login"
         ].join("&")
-        http.post('/index.php', data)
+        headers = { 'Referer' => 'http://www.titlepage.com/index.php' }
+        http.post('/index.php', data, headers)
       end
       @cookie = login_response['set-cookie']
     end
