@@ -2,12 +2,8 @@
 
 require 'bigdecimal'
 require 'net/http'
-require 'rubygems'
-gem 'troelskn-handsoap', '0.2.7'
-gem 'andand', '1.3.1'
 require "handsoap"
 require "andand"
-
 require 'rbook/isbn'
 
 if RUBY_VERSION < "1.9"

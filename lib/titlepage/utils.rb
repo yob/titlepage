@@ -10,32 +10,6 @@ module TitlePage
 
   class Response
 
-    private
-
-    # ensure all specified attributes are encoded as UTF-8. At this stage the
-    # Titlepage API is encoded in ISO-8859-1, but this *should* continue to
-    # work if they change that.
-    #
-    def normalise_attrib_encodings!(current_enc, attributes)
-      return if current_enc.downcase == "utf-8"
-
-      if RUBY_VERSION < "1.9"
-        attributes.each do |attrib|
-          if self.__send__(attrib)
-            new_val = Iconv.conv("utf-8",current_enc, self.__send__(attrib))
-            self.__send__("#{attrib}=", new_val)
-          end
-        end
-      else
-        current_enc = Encoding.find(current_enc)
-        attributes.each do |attrib|
-          if self.__send__(attrib)
-            self.__send__(attrib).force_encoding(current_enc)
-            self.__send__(attrib).encode!("utf-8")
-          end
-        end
-      end
-    end
   end
 
   class ProductIdentifier < TitlePage::Response
@@ -55,7 +29,6 @@ module TitlePage
       id = self.new
       id.product_id_type = node.xpath("//item/ProductIDType/text()").to_s
       id.id_value = node.xpath("//item/IDValue/text()").to_s
-      id.normalise_encodings!(node.document.encoding)
       id
     end
 
@@ -63,7 +36,6 @@ module TitlePage
     #
     def normalise_encodings!(current_enc)
       attribs = [:product_id_type, :id_value]
-      normalise_attrib_encodings!(current_enc, attribs)
     end
   end
 
@@ -89,16 +61,7 @@ module TitlePage
       title.title_without_prefix = node.xpath("//Title/TitleWithoutPrefix/text()").first.andand.to_s
       title.subtitle = node.xpath("//Title/Subtitle/text()").first.andand.to_s
 
-      # normalise encodings to utf-8
-      title.normalise_encodings!(node.document.encoding)
       title
-    end
-
-    # ensure all string attributes are UTF-8 encoded
-    #
-    def normalise_encodings!(current_enc)
-      attribs = [:title_type, :title_text, :title_prefix, :title_without_prefix, :subtitle]
-      normalise_attrib_encodings!(current_enc, attribs)
     end
 
   end
@@ -129,15 +92,7 @@ module TitlePage
       contrib.person_name_inverted = node.xpath("//item/PersonNameInverted/text()").first.andand.to_s
       contrib.titles_before_names = node.xpath("//item/TitlesBeforeNames/text()").first.andand.to_s
       contrib.key_names = node.xpath("//item/KeyNames/text()").first.andand.to_s
-      contrib.normalise_encodings!(node.document.encoding)
       contrib
-    end
-
-    # ensure all string attributes are UTF-8 encoded
-    #
-    def normalise_encodings!(current_enc)
-      attribs = [:contributor_role, :person_name, :person_name_inverted, :titles_before_names, :key_names]
-      normalise_attrib_encodings!(current_enc, attribs)
     end
 
   end
@@ -157,16 +112,9 @@ module TitlePage
       stock = self.new
       stock.on_hand = node.xpath("//Stock/OnHand/text()").first.andand.to_s
       stock.on_order = node.xpath("//Stock/OnOrder/text()").first.andand.to_s
-      stock.normalise_encodings!(node.document.encoding)
       stock
     end
 
-    # ensure all string attributes are UTF-8 encoded
-    #
-    def normalise_encodings!(current_enc)
-      attribs = [:on_hand, :on_order]
-      normalise_attrib_encodings!(current_enc, attribs)
-    end
   end
 
   class Price < TitlePage::Response
@@ -184,16 +132,9 @@ module TitlePage
       price.price_type_code = node.xpath("//Price/PriceTypeCode/text()").first.andand.to_s
       val = node.xpath("//Price/PriceAmount/text()").first.andand.to_s
       price.price_amount = BigDecimal.new(val) if val.size > 0
-      price.normalise_encodings!(node.document.encoding)
       price
     end
 
-    # ensure all string attributes are UTF-8 encoded
-    #
-    def normalise_encodings!(current_enc)
-      attribs = [:price_type_code]
-      normalise_attrib_encodings!(current_enc, attribs)
-    end
   end
 
   class SupplyDetail < TitlePage::Response
@@ -230,16 +171,9 @@ module TitlePage
       sd.stock = TitlePage::Stock.from_xml(node.xpath("//SupplyDetail/Stock").first)
       sd.pack_quantity = node.xpath("//SupplyDetail/PackQuantity/text()").first.andand.to_s.andand.to_i
       sd.price = TitlePage::Price.from_xml(node.xpath("//SupplyDetail/Price").first)
-      sd.normalise_encodings!(node.document.encoding)
       sd
     end
 
-    # ensure all string attributes are UTF-8 encoded
-    #
-    def normalise_encodings!(current_enc)
-      attribs = [:supplier_name, :supplier_role, :product_availability, :expected_ship_date]
-      normalise_attrib_encodings!(current_enc, attribs)
-    end
   end
 
   class Product
