@@ -274,12 +274,19 @@ module TitlePage
     #
     def to_hash
       {
-        :supplier => self.supply_detail.supplier_name,
-        :title    => self.title.title_text,
         :ean      => self.product_identifiers.first.id_value,
+        :title    => self.title.title_text,
+        :subtitle    => self.title.subtitle,
+        :contributors => self.contributors.collect { |c| c.person_name_inverted },
+        :supplier => self.supply_detail.supplier_name,
+        :supplier_role => self.supply_detail.supplier_role,
         :price    => self.supply_detail.price.price_amount.to_s("F").to_f,
         :availability => self.supply_detail.product_availability,
-        :contributors => self.contributors.collect { |c| c.person_name_inverted }
+        :on_hand  => self.supply_detail.stock.on_hand,
+        :on_order  => self.supply_detail.stock.on_order,
+        :expected_shop_date => self.supply_detail.expected_ship_date,
+        :pack_quantity => self.supply_detail.pack_quantity,
+
       }
     end
 
