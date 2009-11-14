@@ -1,3 +1,10 @@
+v1.3.0 (14th November 2009)
+- Update handsoap dependency to >= 1.0. No issues with 0.2, it just makes sense
+  to use something close to a recent version
+- Remove manual string encoding fixes, handsoap now uses nokogiri for XML
+  process and nokogiri returns all results as UTF-8
+- Add some additional values to TitlePage::Product#to_hash()
+
 v1.2.1 (12th October 2009)
 - Update WWWCient to work with current titlepage site
 
