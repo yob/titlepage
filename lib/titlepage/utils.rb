@@ -218,9 +218,8 @@ module TitlePage
         :availability => self.supply_detail.product_availability,
         :on_hand  => self.supply_detail.stock.on_hand,
         :on_order  => self.supply_detail.stock.on_order,
-        :expected_shop_date => self.supply_detail.expected_ship_date,
-        :pack_quantity => self.supply_detail.pack_quantity,
-
+        :expected_ship_date => self.supply_detail.expected_ship_date,
+        :pack_quantity => self.supply_detail.pack_quantity
       }
     end
 
