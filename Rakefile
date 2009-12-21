@@ -72,6 +72,7 @@ spec = Gem::Specification.new do |spec|
   spec.add_dependency('rbook-isbn', '>= 1.0')
   spec.add_dependency('andand', '1.3.1')
   spec.add_dependency('handsoap', '>= 1.0')
+  spec.add_dependency('ean13', '>= 1.4')
   spec.author = "James Healy"
   spec.email = "jimmy@deefa.com"
   spec.rubyforge_project = "rbook"
