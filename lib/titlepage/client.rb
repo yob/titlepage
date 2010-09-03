@@ -54,8 +54,7 @@ module TitlePage
 
     def all(isbn)
       return NotLoggedInError, 'You must login to titlepage API before performing a search' unless @token
-      isbn = RBook::ISBN::convert_to_isbn13(isbn)
-      return nil if isbn.nil?
+      isbn = ISBN10.new(isbn).to_ean || isbn
       @driver.search_by_isbn13(@token, isbn)
     end
 
