@@ -1,3 +1,9 @@
+v1.4.0 (3rd September 2010)
+- correctly parse title prices that contain commans (like $2,500.00)
+- fix typo in Product#to_hash
+- added an experimental sinatra app for proxying and serialising API requests
+- remove WWWClient
+
 v1.3.0 (14th November 2009)
 - Update handsoap dependency to >= 1.0. No issues with 0.2, it just makes sense
   to use something close to a recent version

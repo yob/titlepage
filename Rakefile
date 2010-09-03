@@ -6,11 +6,9 @@ require 'rake/testtask'
 require "rake/gempackagetask"
 require 'spec/rake/spectask'
 
-PKG_VERSION = "1.3.0"
+PKG_VERSION = "1.4.0"
 PKG_NAME = "titlepage"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
-RUBYFORGE_PROJECT = 'rbook'
-RUBYFORGE_USER = 'yob'
 
 CLEAN.include "**/.*.sw*"
 
@@ -75,8 +73,7 @@ spec = Gem::Specification.new do |spec|
   spec.add_dependency('ean13', '>= 1.4')
   spec.author = "James Healy"
   spec.email = "jimmy@deefa.com"
-  spec.rubyforge_project = "rbook"
-  spec.homepage = "http://rbook.rubyforge.org/"
+  spec.homepage = "http://github.com/yob/titlepage"
   spec.description = "This library is designed to assist with using the titlepage.com SOAP API."
 end
 
