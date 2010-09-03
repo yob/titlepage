@@ -131,6 +131,7 @@ module TitlePage
       price = self.new
       price.price_type_code = node.xpath("//Price/PriceTypeCode/text()").first.andand.to_s
       val = node.xpath("//Price/PriceAmount/text()").first.andand.to_s
+      val = val.gsub(/[^\d\.]/,"") # strip any extra chars (like commas)
       price.price_amount = BigDecimal.new(val) if val.size > 0
       price
     end
